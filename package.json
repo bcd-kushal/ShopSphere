@@ -1,0 +1,27 @@
+{
+  "name": "shopsphere",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@supabase/auth-ui-shared": "^0.1.8",
+    "@supabase/supabase-js": "^2.39.3",
+    "dotenv": "^16.3.1",
+    "mongoose": "^8.1.0",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "supabase": "^1.131.5",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4"
+  }
+}
