@@ -9,19 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/auth-helpers-nextjs": "^0.8.7",
-    "@supabase/auth-ui-shared": "^0.1.8",
-    "@supabase/supabase-js": "^2.39.3",
-    "dotenv": "^16.3.1",
-    "mongoose": "^8.1.0",
-    "next": "14.0.4",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10",
+    "@prisma/client": "^5.9.1",
+    "@upstash/redis": "^1.28.4",
+    "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "supabase": "^1.131.5",
-    "uuid": "^9.0.1"
+    "react-pro-sidebar": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.0.4"
+    "eslint-config-next": "14.1.0",
+    "prisma": "^5.9.1"
   }
 }
