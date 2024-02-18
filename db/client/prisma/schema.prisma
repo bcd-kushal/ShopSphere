@@ -1,0 +1,429 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("ATLAS_URI")
+}
+
+// history model ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━||
+
+model History {
+  id            String                @id @default(auto()) @map("_id") @db.ObjectId
+  buyer_id      String                @unique
+  product_ids   String[]     
+  updated_at    DateTime              @default(now()) @updatedAt
+}
+
+
+
+
+// cart model ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━||
+
+model Cart {
+  id            String                @id @default(auto()) @map("_id") @db.ObjectId
+  buyer_id      String                @unique
+  total_price   Float                 @default(0.00)
+  data          Cart_quantities[]
+  updated_at    DateTime              @default(now()) @updatedAt
+}
+
+model Cart_quantities {
+  id            String                @id @default(auto()) @map("_id") @db.ObjectId
+  cart_id       String                @db.ObjectId
+  cart          Cart                  @relation(fields: [cart_id], references: [id])
+
+  @@index([cart_id])
+}
+
+
+
+
+
+// order model ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━||
+
+model Orders {
+  id            String                @id @default(auto()) @map("_id") @db.ObjectId
+    // IDS ASSOCIATED
+  order_id      String                @unique 
+  payment_id    String                @unique
+  buyer_id      String 
+  seller_id     String
+  prod_id       String                @db.ObjectId
+  prod          Product               @relation(fields: [prod_id],references: [id])
+    // ADDRESSES
+  billing_address   String              @default("___empty_billing_address___")
+  shipment_address  String              @default("___empty_shipment_address___")
+  payment_address   String              @default("___empty_payment_address___")
+    // AMOUNT
+  total_amount      Float               @default(0.00)
+  currency          Currencies
+    // DATE
+  delivery_date     DateTime            @default(now())
+  billing_date      DateTime            @default(now())
+  order_date        DateTime            @default(now())
+    // STATUS
+  order_confirmed   Boolean             @default(false)
+  shipped           Boolean             @default(false)
+  out_for_delivery  Boolean             @default(false)
+  delivered         Boolean             @default(false)
+    // REST
+  quantity      Int                   @default(0)
+  is_delivered  Boolean               @default(false)
+  
+  updated_at    DateTime              @default(now()) @updatedAt
+
+  @@index([prod_id])
+}
+
+
+
+
+
+
+// product model ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━||
+
+model Product {
+  id            String                @id @default(auto()) @map("_id") @db.ObjectId
+  prod_id       String                @unique
+  seller_ids    String[]
+  created_at    DateTime              @default(now()) 
+  category      ProductTypes
+  name          String                @default("___empty_name___")
+  rating        Float                 @default(0.0)
+  company       String                @default("___empty_company___")
+  reviews       String[]
+  qna           String[]
+  inStock       Int                   @default(0)
+    // PRICE
+  MRP           Float                 @default(0.00)
+  slashed_price Float                 @default(0.00)
+  currency      Currencies          
+    // SPECIFICATIONS 
+  details       String[]          
+  highlights    String[]  
+  images        Bytes[] 
+    // FOREIGN KEY REFERENCE
+  inOrders      Orders[]
+  updated_at    DateTime              @default(now()) @updatedAt
+}
+
+
+
+
+
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// lsit of enums --------------------------------||
+enum ProductTypes {
+  Appliances
+  Technology
+}
+
+enum Currencies {
+  INR
+  USD
+  AFN
+  EUR
+  ALL
+  DZD
+  AOA
+  XCD
+  ARS
+  AMD
+  AWG
+  AUD
+  AZN
+  BSD
+  BHD
+  BDT
+  BBD
+  BYN
+  BZD
+  XOF
+  BMD
+  BTN
+  BOB
+  BOV
+  BAM
+  BWP
+  NOK
+  BRL
+  BND
+  BGN
+  BIF
+  CVE
+  KHR
+  XAF
+  CAD
+  KYD
+  CLP
+  CLF
+  CNY
+  COP
+  COU
+  KMF
+  CDF
+  NZD
+  CRC
+  HRK
+  CUP
+  CUC
+  ANG
+  CZK
+  DKK
+  DJF
+  DOP
+  EGP
+  SVC
+  ERN
+  SZL
+  ETB
+  FKP
+  FJD
+  XPF
+  GMD
+  GEL
+  GHS
+  GIP
+  GTQ
+  GBP
+  GNF
+  GYD
+  HTG
+  HNL
+  HKD
+  HUF
+  ISK
+  IDR
+  XDR
+  IRR
+  IQD
+  ILS
+  JMD
+  JPY
+  JOD
+  KZT
+  KES
+  KPW
+  KRW
+  KWD
+  KGS
+  LAK
+  LBP
+  LSL
+  ZAR
+  LRD
+  LYD
+  CHF
+  MOP
+  MKD
+  MGA
+  MWK
+  MYR
+  MVR
+  MRU
+  MUR
+  XUA
+  MXN
+  MXV
+  MDL
+  MNT
+  MAD
+  MZN
+  MMK
+  NAD
+  NPR
+  NIO
+  NGN
+  OMR
+  PKR
+  PAB
+  PGK
+  PYG
+  PEN
+  PHP
+  PLN
+  QAR
+  RON
+  RUB
+  RWF
+  SHP
+  WST
+  STN
+  SAR
+  RSD
+  SCR
+  SLL
+  SGD
+  XSU
+  SBD
+  SOS
+  SSP
+  LKR
+  SDG
+  SRD
+  SEK
+  CHE
+  CHW
+  SYP
+  TWD
+  TJS
+  TZS
+  THB
+  TOP
+  TTD
+  TND
+  TRY
+  TMT
+  UGX
+  UAH
+  AED
+  USN
+  UYU
+  UYI
+  UYW
+  UZS
+  VUV
+  VES
+  VND
+  YER
+  ZMW
+  ZWL
+  XBA
+  XBB
+  XBC
+  XBD
+  XTS
+  XXX
+  XAU
+  XPD
+  XPT
+  XAG
+  AFA
+  FIM
+  ALK
+  ADP
+  ESP
+  FRF
+  AOK
+  AON
+  AOR
+  ARA
+  ARP
+  ARY
+  RUR
+  ATS
+  AYM
+  AZM
+  BYB
+  BYR
+  BEC
+  BEF
+  BEL
+  BOP
+  BAD
+  BRB
+  BRC
+  BRE
+  BRN
+  BRR
+  BGJ
+  BGK
+  BGL
+  BUK
+  HRD
+  CYP
+  CSJ
+  CSK
+  ECS
+  ECV
+  GQE
+  EEK
+  XEU
+  GEK
+  DDM
+  DEM
+  GHC
+  GHP
+  GRD
+  GNE
+  GNS
+  GWE
+  GWP
+  ITL
+  ISJ
+  IEP
+  ILP
+  ILR
+  LAJ
+  LVL
+  LVR
+  LSM
+  ZAL
+  LTL
+  LTT
+  LUC
+  LUF
+  LUL
+  MGF
+  MVQ
+  MLF
+  MTL
+  MTP
+  MRO
+  MXP
+  MZE
+  MZM
+  NLG
+  NIC
+  PEH
+  PEI
+  PES
+  PLZ
+  PTE
+  ROK
+  ROL
+  STD
+  CSD
+  SKK
+  SIT
+  RHD
+  ESA
+  ESB
+  SDD
+  SDP
+  SRG
+  CHC
+  TJR
+  TPE
+  TRL
+  TMM
+  UGS
+  UGW
+  UAK
+  SUR
+  USS
+  UYN
+  UYP
+  VEB
+  VEF
+  VNC
+  YDD
+  YUD
+  YUM
+  YUN
+  ZRN
+  ZRZ
+  ZMK
+  ZWC
+  ZWD
+  ZWN
+  ZWR
+  XFO
+  XRE
+  XFU
+}
