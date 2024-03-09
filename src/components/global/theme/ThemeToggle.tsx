@@ -1,5 +1,5 @@
 'use client'
-import { ThemeType } from "@/app/layout"
+import { ThemeType } from "@/utils/types"
 import { toggleTheme } from "@/server/theme/theme"
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, } from "@/components/ui/tooltip"

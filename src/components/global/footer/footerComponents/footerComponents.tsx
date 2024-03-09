@@ -4,7 +4,8 @@ import { SocialLinkPopover } from "./scraps/socialLinkPopups"
 import { GitHubLogoIcon, InstagramLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons"
 import Link from "next/link"
 import ThemeButton from "../../theme/ThemeToggle"
-import { ThemeType } from "@/app/layout"
+import { ThemeType } from "@/utils/types"
+import { SocialLinkRow } from "./scraps/socialLinks"
 
 
 /*************************************************************** 
@@ -18,31 +19,10 @@ export function FooterSocialsAndLogoBox() {
             <Link href="/"><div className="text-3xl font-bold md:text-2xl text-dusk-light-active dark:text-dusk-dark-active">ShopSphere</div></Link>
 
             {/* social links */}
-            <div className="flex gap-4 items-center justify-start mt-1 md:mt-0">
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button variant="ghost" className="hover:bg-transparent p-0"><GitHubLogoIcon className="h-[18px] w-[18px] md:size-4 text-dusk-light-active dark:text-dusk-dark-inactive hover:dark:text-dusk-dark-active "/></Button>
-                    </PopoverTrigger>
-                    <SocialLinkPopover type="github"/>
-                </Popover>
-                
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button variant="ghost" className="hover:bg-transparent p-0"><LinkedInLogoIcon className="h-[18px] w-[18px] md:size-4 text-dusk-light-active dark:text-dusk-dark-inactive hover:dark:text-dusk-dark-active "/></Button>
-                    </PopoverTrigger>
-                    <SocialLinkPopover type="linkedin"/>
-                </Popover>
-                
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button variant="ghost" className="hover:bg-transparent p-0"><InstagramLogoIcon className="h-[18px] w-[18px] md:size-4 text-dusk-light-active dark:text-dusk-dark-inactive hover:dark:text-dusk-dark-active "/></Button>
-                    </PopoverTrigger>
-                    <SocialLinkPopover type="instagram"/>
-                </Popover>
-            </div>
+            <SocialLinkRow/>
 
             {/* be a seller */}
-            <Button className="mt-3 w-fit bg-dusk-light-active">Become a seller</Button> 
+            <Button className="mt-3 w-fit bg-dusk-light-active dark:bg-dusk-dark-active dark:text-dusk-dark-900">Become a seller</Button> 
         </div>
     )
 }
@@ -85,7 +65,7 @@ export function FooterInfoBox({ theme }: { theme:ThemeType }) {
         <div className="pr-8 md:mt-8 mt-6">
             <div className="text-xl italic text-dusk-light-active dark:text-dusk-dark-active">Infinite wardrobe. Infinite styles.</div>
             <div className="text-xs text-dusk-light-300 dark:text-dusk-dark-600">Copyright © {new Date().getFullYear()} </div>
-            <div className="text-xs mt-6 md:w-[450px] mb-8 md:mb-0 text-dusk-light-inactive dark:text-dusk-dark-inactive">ShopSphere is a passion project of a month's hard work, and with that comes a number of re-iterated ideas and features that have been built to (near) perfection.</div>
+            <div className="text-xs mt-6 md:w-[450px] mb-8 md:mb-0 text-dusk-light-inactive dark:text-dusk-dark-inactive">ShopSphere is a passion project of a month&apos;s hard work, and with that comes a number of re-iterated ideas and features that have been built to (near) perfection.</div>
             <ThemeButton theme={theme} className="hidden md:block md:mt-6"/>
         </div>
     )
