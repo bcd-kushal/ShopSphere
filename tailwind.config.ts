@@ -34,21 +34,10 @@ const config = {
           light: { inactive: '#574545', active: '#292121', 100: "#dddada", 200: "#bcb5b5", 300: "#9a8f8f", 400: "#796a6a", 500: "#574545", 600: "#463737", 700: "#342929", 800: "#231c1c", 900: "#110e0e" },
           dark: { inactive: '#ccc', active: '#fff', 100: "#f5f5f5", 200: "#ebebeb", 300: "#e0e0e0", 400: "#d6d6d6", 500: "#cccccc", 600: "#a3a3a3", 700: "#7a7a7a", 800: "#525252", 900: "#292929" }
         },
-        glass: {
-          DEFAULT: '#D5D3D699',
-          light: '#D5D3D699',
-          dark: '#0F0F0F91'
-        },
-        searchtray: {
-          DEFAULT: '#EFECF090',
-          light: '#EFECF090',
-          dark: '#54535490'
-        },
-        background: {
-          DEFAULT: '#E8E5E9',
-          light: '#E8E5E9',
-          dark: '#545354'
-        },
+        glass:        { DEFAULT: '#D5D3D699', light: '#D5D3D699', dark: '#0F0F0F91' },
+        subcontext:   { DEFAULT: '#D5D3D6',   light: '#D5D3D6',   dark: '#2B2B2B' },
+        searchtray:   { DEFAULT: '#EFECF090', light: '#EFECF090', dark: '#54535490' },
+        background:   { DEFAULT: '#E8E5E9',   light: '#E8E5E9',   dark: '#545354' },
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -103,7 +92,12 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  variants: {
+    extend: {
+      textShadow: ['responsive', 'hover', 'focus'],
+    }
+  },
+  plugins: [require("tailwindcss-animate"),require('tailwindcss-textshadow')],
 } satisfies Config
 
 export default config
