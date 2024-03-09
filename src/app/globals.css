@@ -1,7 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
+::-webkit-scrollbar                     { width: 5px; }
+::-webkit-scrollbar-track               { background: transparent; }
+::-webkit-scrollbar-thumb               { background: #57454590; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover         { background: #574545; } 
+#_landing_hero_images::-webkit-scrollbar{ display: none; }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
