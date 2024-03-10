@@ -14,7 +14,7 @@ https://shopsphere.kushalkumarsaha.com/
       
 `ShopSphere` is an e-commerce multi-vendor full-stack application.
 
-_At present, its in development... stay tuned._
+_At present, its in development... stay tuned._ 
 
 <hr>
 
