@@ -2,12 +2,12 @@
 import * as React from "react"
 import { NavigationMenuContent, NavigationMenuLink, } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
-import { ClassNameProps } from "@/utils/types"
+import { ClassNameType } from "@/utils/types"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import Link from "next/link"
 import { MENS_TRAY, WOMENS_TRAY, KIDS_TRAY, featuredData } from "@/data/menu/menuData"
 
-interface MenuTrayProps { type: 'men' | 'women' | 'kid', className?: ClassNameProps }
+interface MenuTrayProps { type: 'men' | 'women' | 'kid', className?: ClassNameType }
 /*****************************************************
 **** MENU TRAY ****
 ******************************************************/

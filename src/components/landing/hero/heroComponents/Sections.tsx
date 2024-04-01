@@ -106,7 +106,7 @@ export function ImageLandingSection({ closeAfter, shuttingSpeed, products, start
             return ()=>clearInterval(closeInterval)
         }
         
-    },[isCardOpen])
+    },[isCardOpen, PRODUCT_CLOSE_TIME_PERIOD, PRODUCT_OPEN_TIME_PERIOD, products ])
 
     return (
         <article id="_landing_hero_image" className="row-start-1 col-start-1 grid overflow-hidden">

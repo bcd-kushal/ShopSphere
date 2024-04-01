@@ -8,13 +8,13 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, } from "@/com
 import Link from "next/link"
 import { ShopSphereIcon } from "@/svgs/svgs"
 import { headerIconShade, tooltipShade } from "@/utils/shades"
-import { ClassNameProps } from "@/utils/types"
+import { ClassNameType } from "@/utils/types"
 
 
 /*************************************************************** 
  **** left side ******
  *****************************************************************/
-export function Hamburger({ className }: { className?: ClassNameProps }) {
+export function Hamburger({ className }: { className?: ClassNameType }) {
     return (
         <span><HamburgerMenuIcon className={`${headerIconShade} ${className}`} /></span>
     )
@@ -61,7 +61,7 @@ export function ShoppingBag() {
     )
 }
 
-export function Search( {className}: {className?: ClassNameProps} ) {
+export function Search( {className}: {className?: ClassNameType} ) {
     /* shadcn dialog */
     return (
         <Dialog>

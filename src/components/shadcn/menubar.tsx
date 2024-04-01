@@ -4,7 +4,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, } from "@/components/ui/navigation-menu"
-import { ClassNameProps } from "@/utils/types"
+import { ClassNameType } from "@/utils/types"
 import { contextMenuShade, headerIconShade } from "@/utils/shades"
 import { MenuTrayHoverContent } from "../global/header/headerComponents/scraps/menuTrayHover"
 
@@ -46,7 +46,7 @@ const components: { title: string; href: string; description: string }[] = [
 	},
 ]
 
-export function LeftMenuBar({ className }: { className?: ClassNameProps }) {
+export function LeftMenuBar({ className }: { className?: ClassNameType }) {
 	return (
 		<NavigationMenu className={` ${className}`}>
 			<NavigationMenuList className="gap-6">
